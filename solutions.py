@@ -167,6 +167,35 @@ def get_solution_folders(category_id):
 
     db_connection.commit()
 
+def get_solution_folder(folder_id):
+    print(f"Getting folder {folder_id}")
+
+    solution_folder_response = get('/solutions/folders/' + str(folder_id)).json()
+    folder = solution_folder_response['folder']
+
+    folder_fields = [
+        folder['id'],
+        folder['parent_id'],
+        folder['category_id'],
+        folder['workspace_id'],
+        folder['name'],
+        folder['description'],
+        folder['visibility'],
+        folder['position'],
+        folder['approval_settings'],
+        folder['default_folder'],
+        folder['has_subfolders'],
+        folder['created_at'],
+        folder['updated_at']
+    ]
+
+    cursor.execute("""
+    INSERT INTO solution_article_folders
+        VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)
+    """, folder_fields)
+
+    db_connection.commit()
+
 print("Getting solution categories")
 
 response = get('/solutions/categories').json()
@@ -198,4 +227,5 @@ with open("solution_subfolder_ids.txt") as file:
     subfolder_ids = [line.rstrip() for line in file]
 
 for subfolder_id in subfolder_ids:
+    get_solution_folder(subfolder_id)
     get_solution_articles(subfolder_id)
