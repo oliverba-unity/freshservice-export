@@ -132,7 +132,7 @@ def get_solution_articles(folder_id, page = 1):
         get_solution_articles(folder_id, page+1)
 
 
-def get_solution_folders(category_id, page = 1):
+def get_solution_folders(category_id):
 
     print(f"Getting solution folders in category {category_id}")
 
