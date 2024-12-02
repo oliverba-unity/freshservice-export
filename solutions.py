@@ -138,7 +138,7 @@ def get_solution_folders(category_id, page = 1):
 
     solution_folders_response = get('/solutions/folders?category_id=' + str(category_id)).json()
 
-    folders = solution_folders_response['folders'];
+    folders = solution_folders_response['folders']
 
     folders_list = []
 
