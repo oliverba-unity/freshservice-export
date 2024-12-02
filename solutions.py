@@ -84,9 +84,9 @@ def get_solution_articles(folder_id, page = 1):
 
     print(f"Getting articles in folder {folder_id} page {page}")
 
-    response = get('/solutions/articles?folder_id='+str(folder_id)+'&per_page=100&page='+str(page))
+    solution_articles_response = get('/solutions/articles?folder_id=' + str(folder_id) + '&per_page=100&page=' + str(page))
 
-    solution_articles = response.json()['articles']
+    solution_articles = solution_articles_response.json()['articles']
 
     solution_articles_list = []
 
@@ -127,7 +127,7 @@ def get_solution_articles(folder_id, page = 1):
 
     print(f"Saved page {page}")
 
-    if 'link' in response.headers:
+    if 'link' in solution_articles_response.headers:
         print(f"More pages to get - getting next page")
         get_solution_articles(folder_id, page+1)
 
@@ -136,9 +136,9 @@ def get_solution_folders(category_id, page = 1):
 
     print(f"Getting solution folders in category {category_id}")
 
-    response = get('/solutions/folders?category_id='+str(category_id)).json()
+    solution_folders_response = get('/solutions/folders?category_id=' + str(category_id)).json()
 
-    folders = response['folders'];
+    folders = solution_folders_response['folders'];
 
     folders_list = []
 
