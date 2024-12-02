@@ -193,3 +193,9 @@ cursor.executemany("""
     """, categories_list)
 
 db_connection.commit()
+
+with open("solution_subfolder_ids.txt") as file:
+    subfolder_ids = [line.rstrip() for line in file]
+
+for subfolder_id in subfolder_ids:
+    get_solution_articles(subfolder_id)
