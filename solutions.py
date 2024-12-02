@@ -171,7 +171,7 @@ print("Getting solution categories")
 
 response = get('/solutions/categories').json()
 
-categories = response['categories'];
+categories = response['categories']
 
 categories_list = []
 
